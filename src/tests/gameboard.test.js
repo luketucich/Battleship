@@ -60,6 +60,11 @@ test("Should place a vertical ship along 5 squares on the gameboard", () => {
   }
 });
 
+test("Should update ships array when ship is placed", () => {
+  gameboard.place([0, 0], 5, 1);
+  expect(gameboard.ships).toEqual([{ hits: 0, length: 5 }]);
+});
+
 test("Should update board cell if attack misses", () => {
   gameboard.place([0, 0], 5, 1);
   gameboard.receiveAttack([1, 0]);

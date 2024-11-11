@@ -3,6 +3,7 @@ import Ship from "./ship.js";
 export default class Gameboard {
   constructor() {
     this.board = Array.from({ length: 10 }, () => Array(10).fill(null));
+    this.ships = [];
   }
 
   validateCoordinates(row, col) {
@@ -45,6 +46,8 @@ export default class Gameboard {
       const y = orientation === 1 ? col + i : col;
       this.board[x][y] = ship;
     }
+
+    this.ships.push(ship);
   }
 
   receiveAttack(coords) {
