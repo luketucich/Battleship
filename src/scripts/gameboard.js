@@ -61,8 +61,12 @@ export default class Gameboard {
     } else if (cell === "HIT" || cell === "MISS") {
       throw new Error("Cannot interact with cell twice!");
     } else {
-      cell.hits++;
+      cell.hit();
       this.board[row][col] = "HIT";
     }
+  }
+
+  isDefeated() {
+    return this.ships.every((ship) => ship.isSunk());
   }
 }

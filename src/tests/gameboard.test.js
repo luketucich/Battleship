@@ -90,3 +90,24 @@ test("Should prevent user from interacting with a cell twice", () => {
     "Cannot interact with cell twice!"
   );
 });
+
+test("Should return 'false' if all ships have not been sunk", () => {
+  gameboard.place([0, 0], 5, 1);
+
+  expect(gameboard.isDefeated()).toBe(false);
+});
+
+test("Should return 'true' if all ships have been sunk", () => {
+  gameboard.place([0, 0], 5, 1);
+  gameboard.place([1, 0], 3, 0);
+
+  for (let i = 0; i < 5; i++) {
+    gameboard.receiveAttack([0, i]);
+  }
+
+  for (let i = 1; i < 4; i++) {
+    gameboard.receiveAttack([i, 0]);
+  }
+
+  expect(gameboard.isDefeated()).toBe(true);
+});
