@@ -4,6 +4,8 @@ export default class Gameboard {
   constructor() {
     this.board = Array.from({ length: 10 }, () => Array(10).fill(null));
     this.ships = [];
+    this.misses = [];
+    this.hits = [];
   }
 
   validateCoordinates(row, col) {
@@ -58,11 +60,13 @@ export default class Gameboard {
 
     if (cell === null) {
       this.board[row][col] = "MISS";
+      this.misses.push(coords);
     } else if (cell === "HIT" || cell === "MISS") {
       throw new Error("Cannot interact with cell twice!");
     } else {
       cell.hit();
       this.board[row][col] = "HIT";
+      this.hits.push(coords);
     }
   }
 
