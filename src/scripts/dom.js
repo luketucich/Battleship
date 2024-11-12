@@ -1,5 +1,5 @@
-export default function updateBoard() {
-  const board = document.getElementById("p1-board");
+export default function updateBoard(player) {
+  const board = document.getElementById(player.id);
 
   for (let i = 0; i < 10; i++) {
     for (let j = 0; j < 10; j++) {
