@@ -50,6 +50,7 @@ export default class Gameboard {
     }
 
     this.ships.push(ship);
+    console.table(this.board);
   }
 
   receiveAttack(coords) {
