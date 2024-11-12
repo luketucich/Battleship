@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
 
 module.exports = {
   entry: {
@@ -10,6 +11,8 @@ module.exports = {
       title: "Production",
       template: path.resolve(__dirname, "src", "template.html"),
     }),
+
+    new NodePolyfillPlugin(),
   ],
   output: {
     filename: "[name].bundle.js",
@@ -31,5 +34,17 @@ module.exports = {
         type: "asset/resource",
       },
     ],
+  },
+  resolve: {
+    fallback: {
+      path: require.resolve("path-browserify"),
+      crypto: require.resolve("crypto-browserify"),
+      stream: require.resolve("stream-browserify"),
+      assert: require.resolve("assert"),
+      http: require.resolve("stream-http"),
+      https: require.resolve("https-browserify"),
+      os: require.resolve("os-browserify/browser"),
+      url: require.resolve("url"),
+    },
   },
 };
