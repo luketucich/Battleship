@@ -28,13 +28,13 @@ test("Should throw an error if placing a ship outside coordinates", () => {
 });
 
 test("Should throw an error if placing a horizontal ship exceeds board boundaries", () => {
-  expect(() => gameboard.place([5, 0], 5, 0)).toThrow(
+  expect(() => gameboard.place([6, 0], 5, 0)).toThrow(
     "Ship would exceed board!"
   );
 });
 
 test("Should throw an error if placing a vertical ship exceeds board boundaries", () => {
-  expect(() => gameboard.place([0, 5], 5, 1)).toThrow(
+  expect(() => gameboard.place([0, 6], 5, 1)).toThrow(
     "Ship would exceed board!"
   );
 });

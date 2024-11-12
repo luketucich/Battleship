@@ -8,8 +8,20 @@ export default function updateBoard(player) {
       cell.classList.add("cell");
       cell.textContent = `${i},${j}`;
 
-      if (player.gameboard.board[i][j] !== null) {
+      if (
+        typeof player.gameboard.board[i][j] === "object" &&
+        player.gameboard.board[i][j] !== null &&
+        player.name !== "Computer"
+      ) {
         cell.classList.add("ship");
+      } else if (
+        player.gameboard.misses.some((miss) => miss[0] === i && miss[1] === j)
+      ) {
+        cell.classList.add("miss");
+      } else if (
+        player.gameboard.hits.some((hit) => hit[0] === i && hit[1] === j)
+      ) {
+        cell.classList.add("hit");
       }
 
       cell.setAttribute("coords", `${i},${j}`);
