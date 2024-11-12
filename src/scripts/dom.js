@@ -12,7 +12,7 @@ export default function updateBoard(player) {
         cell.classList.add("ship");
       }
 
-      // cell.setAttribute("coords", `${i},${j}`);
+      cell.setAttribute("coords", `${i},${j}`);
       board.appendChild(cell);
     }
   }

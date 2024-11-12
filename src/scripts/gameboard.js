@@ -16,8 +16,8 @@ export default class Gameboard {
 
   checkBoundary(row, col, length, orientation) {
     if (
-      (orientation === 0 && row + length > 9) || // Vertical boundary check
-      (orientation === 1 && col + length > 9) // Horizontal boundary check
+      (orientation === 0 && row + length > 10) || // Vertical boundary check
+      (orientation === 1 && col + length > 10) // Horizontal boundary check
     ) {
       throw new Error("Ship would exceed board!");
     }
