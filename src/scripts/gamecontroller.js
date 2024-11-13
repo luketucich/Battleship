@@ -91,6 +91,5 @@ function checkRepeat(coords, player) {
       turn = 0;
     }
   }
+  console.log("finished");
 })(player, computer);
-
-console.log("FINISHED!");
