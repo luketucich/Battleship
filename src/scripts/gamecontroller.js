@@ -1,7 +1,9 @@
 import "../styles/styles.css";
 import updateBoard from "./dom";
 import Player from "./player";
+import songLocation from "../assets/song.mp3";
 
+const song = new Audio(songLocation);
 const player = new Player("Player 1", "p1-board");
 const computer = new Player("Computer", "p2-board");
 
@@ -19,6 +21,11 @@ computer.gameboard.place([0, 8], 2, 0);
 
 updateBoard(player);
 updateBoard(computer);
+
+// Play song on user interaction (click or any other event)
+document.body.addEventListener("click", () => {
+  song.play().catch((err) => console.log("Error playing song:", err));
+});
 
 function getInput() {
   return new Promise((resolve) => {

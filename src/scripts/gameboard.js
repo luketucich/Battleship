@@ -1,4 +1,8 @@
 import Ship from "./ship.js";
+import hitSoundLocation from "../assets/hit.wav";
+import missSoundLocation from "../assets/miss.wav";
+const missSound = new Audio(missSoundLocation);
+const hitSound = new Audio(hitSoundLocation);
 
 export default class Gameboard {
   constructor() {
@@ -59,11 +63,13 @@ export default class Gameboard {
     let cell = this.board[row][col];
 
     if (cell === null) {
+      missSound.play();
       this.board[row][col] = "MISS";
       this.misses.push(coords);
     } else if (cell === "HIT" || cell === "MISS") {
       throw new Error("Cannot interact with cell twice!");
     } else {
+      hitSound.play();
       cell.hit();
       this.board[row][col] = "HIT";
       this.hits.push(coords);
