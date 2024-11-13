@@ -13,13 +13,15 @@ export function getInput() {
   });
 }
 
-export function getComputerInput() {
+export function getComputerInput(playerGameboard) {
   return new Promise((resolve) => {
     setTimeout(() => {
-      const row = Math.floor(Math.random() * 10);
-      const col = Math.floor(Math.random() * 10);
-      resolve([row, col]);
-    }, 1000);
+      const coords =
+        playerGameboard.available[
+          Math.floor(Math.random() * playerGameboard.available.length)
+        ];
+      resolve(coords);
+    }, 10);
   });
 }
 

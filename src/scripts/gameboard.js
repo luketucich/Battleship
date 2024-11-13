@@ -10,6 +10,12 @@ export default class Gameboard {
     this.ships = [];
     this.misses = [];
     this.hits = [];
+    this.available = [];
+    for (let i = 0; i < 10; i++) {
+      for (let j = 0; j < 10; j++) {
+        this.available.push([i, j]);
+      }
+    }
   }
 
   validateCoordinates(row, col) {
@@ -66,6 +72,13 @@ export default class Gameboard {
       missSound.play();
       this.board[row][col] = "MISS";
       this.misses.push(coords);
+
+      const index = this.available.findIndex(
+        (coord) => coord[0] === row && coord[1] === col
+      );
+      if (index !== -1) {
+        this.available.splice(index, 1);
+      }
     } else if (cell === "HIT" || cell === "MISS") {
       throw new Error("Cannot interact with cell twice!");
     } else {
@@ -73,6 +86,13 @@ export default class Gameboard {
       cell.hit();
       this.board[row][col] = "HIT";
       this.hits.push(coords);
+
+      const index = this.available.findIndex(
+        (coord) => coord[0] === row && coord[1] === col
+      );
+      if (index !== -1) {
+        this.available.splice(index, 1);
+      }
     }
   }
 

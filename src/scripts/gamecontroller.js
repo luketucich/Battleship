@@ -20,10 +20,10 @@ getComputerShips(computer);
 updateBoard(player);
 updateBoard(computer);
 
-// Play song on user interaction (click or any other event)
 document.body.addEventListener("click", () => {
   song.volume = 0.5;
   song.play().catch((err) => console.log("Error playing song:", err));
+  song.loop = true;
 });
 
 (async function gameLoop(player1, player2, turn = 0) {
@@ -43,11 +43,7 @@ document.body.addEventListener("click", () => {
 
       turn = 1;
     } else {
-      let coords = await getComputerInput();
-
-      while (checkRepeat(coords, player1)) {
-        coords = await getComputerInput();
-      }
+      const coords = await getComputerInput(player1.gameboard);
 
       player1.gameboard.receiveAttack(coords);
       updateBoard(player1);
