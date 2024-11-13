@@ -1,8 +1,10 @@
 import Ship from "./ship.js";
 import hitSoundLocation from "../assets/hit.wav";
 import missSoundLocation from "../assets/miss.wav";
+import sunkSoundLocation from "../assets/sunk.wav";
 const missSound = new Audio(missSoundLocation);
 const hitSound = new Audio(hitSoundLocation);
+const sunkSound = new Audio(sunkSoundLocation);
 
 export default class Gameboard {
   constructor() {
@@ -57,8 +59,8 @@ export default class Gameboard {
       const x = orientation === 0 ? row + i : row;
       const y = orientation === 1 ? col + i : col;
       this.board[x][y] = ship;
+      ship.coords.push([x, y]);
     }
-
     this.ships.push(ship);
   }
 
@@ -73,26 +75,30 @@ export default class Gameboard {
       this.board[row][col] = "MISS";
       this.misses.push(coords);
 
-      const index = this.available.findIndex(
-        (coord) => coord[0] === row && coord[1] === col
+      this.available.findIndex(
+        (coord, index) =>
+          coord[0] === row &&
+          coord[1] === col &&
+          this.available.splice(index, 1)
       );
-      if (index !== -1) {
-        this.available.splice(index, 1);
-      }
-    } else if (cell === "HIT" || cell === "MISS") {
+    } else if (
+      this.hits.some(
+        (ele) =>
+          (ele[0] === coords[0] && ele[1] === coords[1]) || cell === "MISS"
+      )
+    ) {
       throw new Error("Cannot interact with cell twice!");
     } else {
-      hitSound.play();
       cell.hit();
-      this.board[row][col] = "HIT";
+      cell.isSunk() ? sunkSound.play() : hitSound.play();
       this.hits.push(coords);
 
-      const index = this.available.findIndex(
-        (coord) => coord[0] === row && coord[1] === col
+      this.available.findIndex(
+        (coord, index) =>
+          coord[0] === row &&
+          coord[1] === col &&
+          this.available.splice(index, 1)
       );
-      if (index !== -1) {
-        this.available.splice(index, 1);
-      }
     }
   }
 

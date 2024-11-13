@@ -21,7 +21,7 @@ export function getComputerInput(playerGameboard) {
           Math.floor(Math.random() * playerGameboard.available.length)
         ];
       resolve(coords);
-    }, 10);
+    }, 500);
   });
 }
 
@@ -34,10 +34,8 @@ export function checkRepeat(coords, player) {
       (ele) => ele[0] === coords[0] && ele[1] === coords[1]
     )
   ) {
-    console.log("Already attacked this square");
     return true;
   } else {
-    console.log("Good to go!");
     return false;
   }
 }

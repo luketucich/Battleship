@@ -1,5 +1,5 @@
 import "../styles/styles.css";
-import updateBoard from "./dom";
+import { updateBoard, generateBoard } from "./dom";
 import Player from "./player";
 import songLocation from "../assets/song.mp3";
 import { getInput, getComputerInput, checkRepeat } from "./input";
@@ -15,11 +15,6 @@ player.gameboard.place([4, 4], 3, 1);
 player.gameboard.place([7, 1], 3, 1);
 player.gameboard.place([0, 8], 2, 0);
 
-getComputerShips(computer);
-
-updateBoard(player);
-updateBoard(computer);
-
 document.body.addEventListener("click", () => {
   song.volume = 0.5;
   song.play().catch((err) => console.log("Error playing song:", err));
@@ -27,6 +22,10 @@ document.body.addEventListener("click", () => {
 });
 
 (async function gameLoop(player1, player2, turn = 0) {
+  getComputerShips(player2);
+  generateBoard(player1);
+  generateBoard(player2);
+
   while (
     player.gameboard.isDefeated() === false &&
     computer.gameboard.isDefeated() === false
@@ -39,17 +38,17 @@ document.body.addEventListener("click", () => {
       }
 
       player2.gameboard.receiveAttack(coords);
-      updateBoard(player2);
+      updateBoard(player2, coords);
 
       turn = 1;
     } else {
       const coords = await getComputerInput(player1.gameboard);
 
       player1.gameboard.receiveAttack(coords);
-      updateBoard(player1);
+      updateBoard(player1, coords);
 
       turn = 0;
     }
   }
-  console.log("finished");
+  console.log("Game Over");
 })(player, computer);
