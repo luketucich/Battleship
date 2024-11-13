@@ -6,7 +6,6 @@ export default function updateBoard(player) {
     for (let j = 0; j < 10; j++) {
       const cell = document.createElement("div");
       cell.classList.add("cell");
-      // cell.textContent = `${i},${j}`;
 
       if (
         typeof player.gameboard.board[i][j] === "object" &&

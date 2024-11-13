@@ -13,13 +13,19 @@
   --scanline-color: rgba(51, 255, 51, 0.1);
 }
 
+@font-face {
+  font-family: "OCRAEXT";
+  src: url("../assets/OCRAEXT.ttf") format("truetype");
+}
+
 html {
   background-color: black;
+  cursor: url("../assets/cursor.png"), auto;
 }
 
 body {
   flex-direction: column;
-  font-family: "Source Code Pro", monospace;
+  font-family: "OCRAEXT", Impact;
   background-color: var(--background-color);
   color: var(--text-color);
   margin: 0;
@@ -129,17 +135,16 @@ body::after {
   height: 2.25rem;
   background-color: var(--cell-bg-color);
   border: 0.072rem solid var(--cell-border-color);
-  transition: all 0.3s ease;
+  transition: all 0.1s ease;
   pointer-events: none;
 }
 
 #p2-board .cell {
   pointer-events: auto;
-  cursor: crosshair;
 }
 
 #p2-board .cell:hover {
-  filter: brightness(1.2);
+  filter: brightness(1.5);
 }
 
 .cell.hit {
