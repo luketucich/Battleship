@@ -1,3 +1,7 @@
+document.addEventListener("DOMContentLoaded", () => {
+  feather.replace();
+});
+
 import "../styles/styles.css";
 import { updateBoard, generateBoard, updateTitle } from "./dom";
 import Player from "./player";
@@ -5,6 +9,7 @@ import songLocation from "../assets/song.mp3";
 import { getInput, getComputerInput, checkRepeat } from "./input";
 import { getComputerShips } from "./placement.js";
 import dragDrop from "./drag.js";
+import feather from "feather-icons";
 
 const song = new Audio(songLocation);
 const player = new Player("Player 1", "p1-board");
@@ -16,15 +21,15 @@ const computer = new Player("Computer", "p2-board");
 // player.gameboard.place([7, 1], 3, 1);
 // player.gameboard.place([0, 8], 2, 0);
 
-// document.body.addEventListener("click", () => {
-//   song.volume = 0.5;
-//   song.play().catch((err) => console.log("Error playing song:", err));
-//   song.loop = true;
-// });
+document.body.addEventListener("click", () => {
+  song.volume = 0.5;
+  song.play().catch((err) => console.log("Error playing song:", err));
+  song.loop = true;
+});
 
 // getComputerShips(computer);
 generateBoard(player);
-dragDrop();
+dragDrop(player);
 
 // (async function gameLoop(player1, player2, turn = 0) {
 //   getComputerShips(player2);

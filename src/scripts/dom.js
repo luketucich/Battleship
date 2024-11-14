@@ -8,6 +8,7 @@ export function generateBoard(player) {
   boardContainer.style.display = "flex";
 
   const board = document.getElementById(player.id);
+  board.innerHTML = "";
 
   for (let i = 0; i < 10; i++) {
     for (let j = 0; j < 10; j++) {
@@ -60,4 +61,10 @@ export function updateBoard(player, coords) {
     cellDiv.classList.remove("ship");
     cellDiv.classList.add("hit");
   }
+}
+export function updateShipCells(player, coord) {
+  const board = document.getElementById(player.id);
+  const [row, col] = coord;
+  const cellDiv = board.querySelector(`[coords="${row},${col}"]`);
+  cellDiv.classList.add("ship");
 }

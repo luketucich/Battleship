@@ -33,6 +33,7 @@
   "dependencies": {
     "assert": "^2.1.0",
     "crypto-browserify": "^3.12.1",
+    "feather-icons": "^4.29.2",
     "https-browserify": "^1.0.0",
     "node-polyfill-webpack-plugin": "^4.0.0",
     "os-browserify": "^0.3.0",

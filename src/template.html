@@ -18,54 +18,85 @@
     <h1 id="title">Assemble Your Fleet</h1>
     <div id="gameboards">
       <div id="p1-board-container" class="board-container">
-        <div class="board-label">Admiral's Command</div>
+        <div class="board-label">Your Territory</div>
         <div id="p1-board" class="board"></div>
       </div>
       <div id="p2-board-container" class="board-container">
-        <div class="board-label">Enemy Waters</div>
+        <div class="board-label">Enemy Territory</div>
         <div id="p2-board" class="board"></div>
       </div>
-      <div id="ship-placement">
-        <div class="ship-container">
-          <div class="ship-label">Carrier</div>
-          <div class="ship" draggable="true" id="carrier">
-            <div class="ship-part"></div>
-            <div class="ship-part"></div>
-            <div class="ship-part"></div>
-            <div class="ship-part"></div>
-            <div class="ship-part"></div>
-          </div>
+      <div id="fleet-dock">
+        <div class="ship-placement-header">
+          <div class="board-label">Fleet Dock</div>
+          <button
+            id="rotate-button"
+            class="board-button"
+            style="
+              font-size: 0.75rem;
+              padding: 0.3125rem;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <i data-feather="rotate-cw" style="width: 1rem; height: 1rem"></i>
+          </button>
+          <button
+            id="trash-button"
+            class="board-button"
+            style="
+              font-size: 0.75rem;
+              padding: 0.3125rem;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <i data-feather="trash-2" style="width: 1rem; height: 1rem"></i>
+          </button>
         </div>
-        <div class="ship-container">
-          <div class="ship-label">Battleship</div>
-          <div class="ship" draggable="true" id="battleship">
-            <div class="ship-part"></div>
-            <div class="ship-part"></div>
-            <div class="ship-part"></div>
-            <div class="ship-part"></div>
+        <div id="ship-placement">
+          <div class="ship-container">
+            <div class="ship-label">Carrier</div>
+            <div class="ship-draggable" draggable="true" id="carrier">
+              <div class="ship-part"></div>
+              <div class="ship-part"></div>
+              <div class="ship-part"></div>
+              <div class="ship-part"></div>
+              <div class="ship-part"></div>
+            </div>
           </div>
-        </div>
-        <div class="ship-container">
-          <div class="ship-label">Cruiser</div>
-          <div class="ship" draggable="true" id="cruiser">
-            <div class="ship-part"></div>
-            <div class="ship-part"></div>
-            <div class="ship-part"></div>
+          <div class="ship-container">
+            <div class="ship-label">Battleship</div>
+            <div class="ship-draggable" draggable="true" id="battleship">
+              <div class="ship-part"></div>
+              <div class="ship-part"></div>
+              <div class="ship-part"></div>
+              <div class="ship-part"></div>
+            </div>
           </div>
-        </div>
-        <div class="ship-container">
-          <div class="ship-label">Submarine</div>
-          <div class="ship" draggable="true" id="submarine">
-            <div class="ship-part"></div>
-            <div class="ship-part"></div>
-            <div class="ship-part"></div>
+          <div class="ship-container">
+            <div class="ship-label">Cruiser</div>
+            <div class="ship-draggable" draggable="true" id="cruiser">
+              <div class="ship-part"></div>
+              <div class="ship-part"></div>
+              <div class="ship-part"></div>
+            </div>
           </div>
-        </div>
-        <div class="ship-container">
-          <div class="ship-label">Destroyer</div>
-          <div class="ship" draggable="true" id="destroyer">
-            <div class="ship-part"></div>
-            <div class="ship-part"></div>
+          <div class="ship-container">
+            <div class="ship-label">Submarine</div>
+            <div class="ship-draggable" draggable="true" id="submarine">
+              <div class="ship-part"></div>
+              <div class="ship-part"></div>
+              <div class="ship-part"></div>
+            </div>
+          </div>
+          <div class="ship-container">
+            <div class="ship-label">Destroyer</div>
+            <div class="ship-draggable" draggable="true" id="destroyer">
+              <div class="ship-part"></div>
+              <div class="ship-part"></div>
+            </div>
           </div>
         </div>
       </div>

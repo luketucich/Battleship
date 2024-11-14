@@ -1,3 +1,4 @@
+/* Root Variables */
 :root {
   --background-color: #0e180e;
   --text-color: #33ff33;
@@ -8,25 +9,28 @@
   --cell-bg-color: #073707;
   --cell-border-color: #004d00;
   --cell-hit-color: #a62727;
-  --cell-highlight-color: #007399;
+  --cell-highlight-color: #66ff664c;
   --cell-miss-color: #4d4d4d;
   --cell-ship-color: #009900;
   --cell-sunk-color: #4a0000;
   --scanline-color: rgba(51, 255, 51, 0.1);
 }
 
+/* Font Face */
 @font-face {
   font-family: "OCRAEXT";
   src: url("../assets/OCRAEXT.ttf") format("truetype");
 }
 
+/* Global Styles */
 html {
+  user-select: none;
   background-color: black;
+  font-family: "OCRAEXT", Impact;
 }
 
 body {
   flex-direction: column;
-  font-family: "OCRAEXT", Impact;
   background-color: var(--background-color);
   color: var(--text-color);
   margin: 0;
@@ -37,21 +41,24 @@ body {
   height: 100vh;
   width: 100vw;
   position: relative;
-  filter: contrast(1.1) brightness(1.2) blur(0.5px);
+  filter: contrast(1.1) brightness(1.2) blur(0.6px);
   animation: fadeIn 1s ease-out;
+  box-sizing: border-box;
 }
 
+/* Body Effects */
 body::before {
   content: "";
   position: absolute;
   inset: 0;
   background: repeating-linear-gradient(
-    to bottom,
-    var(--scanline-color) 0%,
-    var(--scanline-color) 0.064rem,
-    transparent 0.0625rem,
-    transparent 0.3rem
-  );
+      to bottom,
+      var(--scanline-color) 0%,
+      var(--scanline-color) 0.064rem,
+      transparent 0.0625rem,
+      transparent 0.3rem
+    ),
+    radial-gradient(circle, transparent, transparent 70%, rgba(0, 0, 0, 0.5));
   animation: scanlines 0.5s infinite;
   pointer-events: none;
   z-index: 9998;
@@ -70,6 +77,7 @@ body::after {
   z-index: 9999;
 }
 
+/* Keyframes */
 @keyframes scanlines {
   0% {
     background-position: 0 0;
@@ -90,39 +98,44 @@ body::after {
   }
 }
 
+/* Gameboards */
 #gameboards {
   display: flex;
-  gap: 1.35rem;
-  padding: 1.35rem;
+  gap: 1.5rem;
+  padding: 1.5rem;
   background-color: var(--gameboard-bg-color);
-  border-radius: 0.72rem;
-  border: 0.225rem solid var(--gameboard-border-color);
+  border-radius: 0.8rem;
+  border: 0.25rem solid var(--gameboard-border-color);
   position: relative;
   image-rendering: pixelated;
+  align-items: center;
+  justify-content: center;
 }
 
+/* Board Container */
 .board-container {
   display: none;
   flex-direction: column;
-  gap: 0.72rem;
+  gap: 0.8rem;
   align-items: center;
 }
 
 .board-label {
-  font-size: 1.08rem;
+  font-size: 1.2rem;
   font-weight: bold;
   color: var(--text-color);
 }
 
+/* Board */
 .board {
   display: grid;
   grid-template: repeat(10, 1fr) / repeat(10, 1fr);
-  gap: 0.18rem;
+  gap: 0.2rem;
   box-sizing: border-box;
-  border: 0.225rem solid var(--board-border-color);
-  padding: 0.225rem;
+  border: 0.25rem solid var(--board-border-color);
+  padding: 0.25rem;
   background-color: var(--board-bg-color);
-  border-radius: 0.36rem;
+  border-radius: 0.4rem;
   transform: rotate(-90deg);
 }
 
@@ -130,12 +143,13 @@ body::after {
   transform: rotate(90deg);
 }
 
+/* Cells */
 .cell {
-  padding: 0.18rem;
-  width: 2.25rem;
-  height: 2.25rem;
+  padding: 0.2rem;
+  width: 2.5rem;
+  height: 2.5rem;
   background-color: var(--cell-bg-color);
-  border: 0.072rem solid var(--cell-border-color);
+  border: 0.08rem solid var(--cell-border-color);
   transition: all 0.1s ease;
   /* pointer-events: none; */
 }
@@ -145,7 +159,7 @@ body::after {
 }
 
 #p2-board .cell:hover {
-  cursor: url("../assets/cursor.png"), auto;
+  cursor: url("../assets/cursor-target.png"), auto;
   filter: brightness(1.5);
 }
 
@@ -165,48 +179,109 @@ body::after {
   background-color: var(--cell-sunk-color);
 }
 
+/* Ship Container */
 .ship-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0.5rem;
+  padding: 0.6rem;
   background-color: var(--board-bg-color);
-  border-radius: 0.5rem;
-  border: 0.2rem solid var(--board-border-color);
-  margin-bottom: 1rem;
+  border-radius: 0.6rem;
+  border: 0.25rem solid var(--board-border-color);
 }
 
 .ship-label {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: bold;
   color: var(--text-color);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
   text-align: center;
 }
 
-.ship {
-  /* position: fixed; */
+/* Ship Draggable */
+.ship-draggable {
   display: flex;
-  gap: 0.18rem;
+  gap: 0.2rem;
   transition: transform 0.2s ease;
 }
 
-.ship:hover {
+.ship-draggable:hover {
   transform: scale(1.05);
+  cursor: move;
 }
 
-.ship:active {
-  opacity: 0.3;
+.ship-draggable:active {
+  opacity: 0.2;
+  cursor: move;
 }
 
+/* Ship Part */
 .ship-part {
-  width: 2.61rem;
-  height: 2.61rem;
+  width: 1.6rem;
+  height: 1.6rem;
   background-color: var(--cell-ship-color);
-  border: 0.072rem solid var(--cell-border-color);
-  border-radius: 0.2rem;
+  border: 0.08rem solid var(--cell-border-color);
+  border-radius: 0.25rem;
 }
 
+/* Highlight */
 .highlight {
   background-color: var(--cell-highlight-color);
+}
+
+/* Placed */
+.placed {
+  pointer-events: none;
+  opacity: 0.2;
+}
+
+/* Board Button */
+.board-button {
+  background-color: var(--board-bg-color);
+  color: var(--text-color);
+  border: none;
+  border: 0.25rem solid var(--board-border-color);
+  border-radius: 0.6rem;
+  padding: 0.6rem 1.2rem;
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+#rotate-button:hover {
+  background-color: var(--cell-highlight-color);
+  transform: scale(1.1);
+}
+
+#rotate-button:active {
+  transform: scale(0.9);
+}
+
+/* Ship Placement */
+#ship-placement {
+  display: flex;
+  flex-direction: column;
+  border: 0.25rem solid var(--board-border-color);
+  border-radius: 0.6rem;
+  padding: 1.2rem 0.6rem;
+  gap: 0.6rem;
+  box-sizing: border-box;
+}
+
+.ship-placement-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 0.6rem;
+  background-color: var(--board-bg-color);
+  border-radius: 0.6rem;
+  border: 0.25rem solid var(--board-border-color);
+  margin-bottom: 1.2rem;
+}
+
+.ship-placement-header .board-label {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--text-color);
 }
