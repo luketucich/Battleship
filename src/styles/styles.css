@@ -290,3 +290,28 @@ body::after {
   pointer-events: none;
   opacity: 0.2;
 }
+
+#title {
+  font-size: 2rem;
+  color: var(--text-color);
+  margin-bottom: 1.2rem;
+}
+
+#deploy-button {
+  margin-top: 1.2rem;
+  font-family: "OCRAEXT", Impact;
+  background-color: var(--board-bg-color);
+  color: var(--text-color);
+  border: none;
+  border: 0.25rem solid var(--board-border-color);
+  border-radius: 0.6rem;
+  padding: 0.6rem 1.2rem;
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+#deploy-button:hover {
+  background-color: var(--cell-highlight-color);
+  transform: scale(1.1);
+}

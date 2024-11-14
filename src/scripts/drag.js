@@ -3,34 +3,13 @@ import placeSoundLocation from "../assets/place.wav";
 import errorSoundLocation from "../assets/error.wav";
 import rotateSoundLocation from "../assets/rotate.wav";
 import trashSoundLocation from "../assets/trash.wav";
+import deploySoundLocation from "../assets/deploy.wav";
 
 const rotateSound = new Audio(rotateSoundLocation);
 const placeSound = new Audio(placeSoundLocation);
 const errorSound = new Audio(errorSoundLocation);
 const trashSound = new Audio(trashSoundLocation);
-
-(function rotateButton() {
-  const rotateButton = document.getElementById("rotate-button");
-  const shipsContainer = document.getElementById("ship-placement");
-  const ships = document.querySelectorAll(".ship-draggable");
-
-  rotateButton.addEventListener("click", () => {
-    rotateSound.play();
-    if (shipsContainer.classList.contains("vertical.container")) {
-      shipsContainer.classList.remove("vertical.container");
-      ships.forEach((ship) => {
-        ship.style.flexDirection = "row";
-      });
-    } else {
-      shipsContainer.classList.add("vertical.container");
-      shipsContainer.style.flexDirection = "row";
-      shipsContainer.style.flexWrap = "wrap";
-      ships.forEach((ship) => {
-        ship.style.flexDirection = "column";
-      });
-    }
-  });
-})();
+const deploySound = new Audio(deploySoundLocation);
 
 function handleDragStart(event) {
   event.target.classList.add("dragging");
@@ -179,34 +158,72 @@ function handleDrop(event, player) {
 }
 
 export default function dragDrop(player) {
-  const draggables = document.querySelectorAll(".ship-draggable");
-  const cells = document.querySelectorAll(".cell");
+  return new Promise((resolve) => {
+    const draggables = document.querySelectorAll(".ship-draggable");
+    const cells = document.querySelectorAll(".cell");
 
-  draggables.forEach((draggable) => {
-    draggable.addEventListener("dragstart", handleDragStart);
-    draggable.addEventListener("dragend", handleDragEnd);
-  });
-
-  cells.forEach((cell) => {
-    cell.addEventListener("dragover", handleDragOver);
-    cell.addEventListener("dragleave", handleDragLeave);
-    cell.addEventListener("drop", (event) => handleDrop(event, player));
-  });
-
-  (function trashButton() {
-    const trashButton = document.getElementById("trash-button");
-
-    trashButton.addEventListener("click", () => {
-      trashSound.play();
-      player.gameboard.ships = [];
-      clearShipCells(player);
-
-      const draggables = document.querySelectorAll(".ship-draggable");
-
-      draggables.forEach((draggable) => {
-        draggable.classList.remove("placed");
-        draggable.draggable = true;
-      });
+    draggables.forEach((draggable) => {
+      draggable.addEventListener("dragstart", handleDragStart);
+      draggable.addEventListener("dragend", handleDragEnd);
     });
-  })();
+
+    cells.forEach((cell) => {
+      cell.addEventListener("dragover", handleDragOver);
+      cell.addEventListener("dragleave", handleDragLeave);
+      cell.addEventListener("drop", (event) => handleDrop(event, player));
+    });
+
+    (function rotateButton() {
+      const rotateButton = document.getElementById("rotate-button");
+      const shipsContainer = document.getElementById("ship-placement");
+      const ships = document.querySelectorAll(".ship-draggable");
+
+      rotateButton.addEventListener("click", () => {
+        rotateSound.play();
+        if (shipsContainer.classList.contains("vertical.container")) {
+          shipsContainer.classList.remove("vertical.container");
+          ships.forEach((ship) => {
+            ship.style.flexDirection = "row";
+          });
+        } else {
+          shipsContainer.classList.add("vertical.container");
+          shipsContainer.style.flexDirection = "row";
+          shipsContainer.style.flexWrap = "wrap";
+          ships.forEach((ship) => {
+            ship.style.flexDirection = "column";
+          });
+        }
+      });
+    })();
+
+    (function trashButton() {
+      const trashButton = document.getElementById("trash-button");
+
+      trashButton.addEventListener("click", () => {
+        trashSound.play();
+        player.gameboard.ships = [];
+        clearShipCells(player);
+
+        const draggables = document.querySelectorAll(".ship-draggable");
+
+        draggables.forEach((draggable) => {
+          draggable.classList.remove("placed");
+          draggable.draggable = true;
+        });
+      });
+    })();
+
+    (function deployButton() {
+      const deployButton = document.getElementById("deploy-button");
+
+      deployButton.addEventListener("click", () => {
+        if (player.gameboard.ships.length < 5) {
+          errorSound.play();
+        } else {
+          deploySound.play();
+          resolve();
+        }
+      });
+    })();
+  });
 }

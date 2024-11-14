@@ -75,3 +75,12 @@ export function clearShipCells(player) {
     cell.classList.remove("ship");
   });
 }
+
+export function changeToControlCenter() {
+  updateTitle();
+
+  const dockingStation = document.getElementById("fleet-dock");
+  const deployButton = document.getElementById("deploy-button");
+  dockingStation.style.display = "none";
+  deployButton.style.display = "none";
+}
