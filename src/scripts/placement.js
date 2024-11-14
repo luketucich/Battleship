@@ -22,3 +22,7 @@ export function getComputerShips(computer) {
     }
   }
 }
+
+// export function getPlayerShips(player) {
+
+// }

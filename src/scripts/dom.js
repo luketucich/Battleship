@@ -1,4 +1,12 @@
+export function updateTitle() {
+  const title = document.getElementById("title");
+  title.textContent = "Control Center";
+}
+
 export function generateBoard(player) {
+  const boardContainer = document.getElementById(player.id + "-container");
+  boardContainer.style.display = "flex";
+
   const board = document.getElementById(player.id);
 
   for (let i = 0; i < 10; i++) {

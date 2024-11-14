@@ -8,6 +8,7 @@
   --cell-bg-color: #073707;
   --cell-border-color: #004d00;
   --cell-hit-color: #a62727;
+  --cell-highlight-color: #007399;
   --cell-miss-color: #4d4d4d;
   --cell-ship-color: #009900;
   --cell-sunk-color: #4a0000;
@@ -21,7 +22,6 @@
 
 html {
   background-color: black;
-  cursor: url("../assets/cursor.png"), auto;
 }
 
 body {
@@ -102,7 +102,7 @@ body::after {
 }
 
 .board-container {
-  display: flex;
+  display: none;
   flex-direction: column;
   gap: 0.72rem;
   align-items: center;
@@ -137,7 +137,7 @@ body::after {
   background-color: var(--cell-bg-color);
   border: 0.072rem solid var(--cell-border-color);
   transition: all 0.1s ease;
-  pointer-events: none;
+  /* pointer-events: none; */
 }
 
 #p2-board .cell {
@@ -145,6 +145,7 @@ body::after {
 }
 
 #p2-board .cell:hover {
+  cursor: url("../assets/cursor.png"), auto;
   filter: brightness(1.5);
 }
 
@@ -162,4 +163,50 @@ body::after {
 
 .cell.sunk {
   background-color: var(--cell-sunk-color);
+}
+
+.ship-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: var(--board-bg-color);
+  border-radius: 0.5rem;
+  border: 0.2rem solid var(--board-border-color);
+  margin-bottom: 1rem;
+}
+
+.ship-label {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.ship {
+  /* position: fixed; */
+  display: flex;
+  gap: 0.18rem;
+  transition: transform 0.2s ease;
+}
+
+.ship:hover {
+  transform: scale(1.05);
+}
+
+.ship:active {
+  opacity: 0.3;
+}
+
+.ship-part {
+  width: 2.61rem;
+  height: 2.61rem;
+  background-color: var(--cell-ship-color);
+  border: 0.072rem solid var(--cell-border-color);
+  border-radius: 0.2rem;
+}
+
+.highlight {
+  background-color: var(--cell-highlight-color);
 }

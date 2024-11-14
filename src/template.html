@@ -15,15 +15,59 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>Control Center</h1>
+    <h1 id="title">Assemble Your Fleet</h1>
     <div id="gameboards">
-      <div class="board-container">
+      <div id="p1-board-container" class="board-container">
         <div class="board-label">Admiral's Command</div>
         <div id="p1-board" class="board"></div>
       </div>
-      <div class="board-container">
+      <div id="p2-board-container" class="board-container">
         <div class="board-label">Enemy Waters</div>
         <div id="p2-board" class="board"></div>
+      </div>
+      <div id="ship-placement">
+        <div class="ship-container">
+          <div class="ship-label">Carrier</div>
+          <div class="ship" draggable="true" id="carrier">
+            <div class="ship-part"></div>
+            <div class="ship-part"></div>
+            <div class="ship-part"></div>
+            <div class="ship-part"></div>
+            <div class="ship-part"></div>
+          </div>
+        </div>
+        <div class="ship-container">
+          <div class="ship-label">Battleship</div>
+          <div class="ship" draggable="true" id="battleship">
+            <div class="ship-part"></div>
+            <div class="ship-part"></div>
+            <div class="ship-part"></div>
+            <div class="ship-part"></div>
+          </div>
+        </div>
+        <div class="ship-container">
+          <div class="ship-label">Cruiser</div>
+          <div class="ship" draggable="true" id="cruiser">
+            <div class="ship-part"></div>
+            <div class="ship-part"></div>
+            <div class="ship-part"></div>
+          </div>
+        </div>
+        <div class="ship-container">
+          <div class="ship-label">Submarine</div>
+          <div class="ship" draggable="true" id="submarine">
+            <div class="ship-part"></div>
+            <div class="ship-part"></div>
+            <div class="ship-part"></div>
+          </div>
+        </div>
+        <div class="ship-container">
+          <div class="ship-label">Destroyer</div>
+          <div class="ship" draggable="true" id="destroyer">
+            <div class="ship-part"></div>
+            <div class="ship-part"></div>
+          </div>
+        </div>
       </div>
     </div>
   </body>
