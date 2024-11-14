@@ -202,6 +202,10 @@ export default function dragDrop(player) {
       trashButton.addEventListener("click", () => {
         trashSound.play();
         player.gameboard.ships = [];
+        player.gameboard.board = Array.from({ length: 10 }, () =>
+          Array(10).fill(null)
+        );
+
         clearShipCells(player);
 
         const draggables = document.querySelectorAll(".ship-draggable");
