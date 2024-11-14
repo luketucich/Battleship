@@ -110,6 +110,7 @@ body::after {
   image-rendering: pixelated;
   align-items: center;
   justify-content: center;
+  transition: transform 0.2s ease;
 }
 
 /* Board Container */
@@ -179,6 +180,61 @@ body::after {
   background-color: var(--cell-sunk-color);
 }
 
+/* Board Button */
+.board-button {
+  background-color: var(--board-bg-color);
+  color: var(--text-color);
+  border: none;
+  border: 0.25rem solid var(--board-border-color);
+  border-radius: 0.6rem;
+  padding: 0.6rem 1.2rem;
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.board-button:hover {
+  background-color: var(--cell-highlight-color);
+  transform: scale(1.1);
+}
+
+.board-button:active {
+  transform: scale(0.9);
+}
+
+/* Ship Placement */
+#ship-placement {
+  display: flex;
+  flex-direction: column;
+  width: 17rem;
+  height: 35rem;
+  border: 0.25rem solid var(--board-border-color);
+  border-radius: 0.6rem;
+  padding: 1.2rem 0.6rem;
+  gap: 0.6rem;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+}
+
+.ship-placement-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem;
+  background-color: var(--board-bg-color);
+  border-radius: 0.6rem;
+  border: 0.25rem solid var(--board-border-color);
+  margin-bottom: 1.2rem;
+}
+
+.ship-placement-header .board-label {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
 /* Ship Container */
 .ship-container {
   display: flex;
@@ -201,8 +257,8 @@ body::after {
 /* Ship Draggable */
 .ship-draggable {
   display: flex;
+  flex-direction: row;
   gap: 0.2rem;
-  transition: transform 0.2s ease;
 }
 
 .ship-draggable:hover {
@@ -233,55 +289,4 @@ body::after {
 .placed {
   pointer-events: none;
   opacity: 0.2;
-}
-
-/* Board Button */
-.board-button {
-  background-color: var(--board-bg-color);
-  color: var(--text-color);
-  border: none;
-  border: 0.25rem solid var(--board-border-color);
-  border-radius: 0.6rem;
-  padding: 0.6rem 1.2rem;
-  font-size: 1.6rem;
-  cursor: pointer;
-  transition: transform 0.2s ease, background-color 0.2s ease;
-}
-
-#rotate-button:hover {
-  background-color: var(--cell-highlight-color);
-  transform: scale(1.1);
-}
-
-#rotate-button:active {
-  transform: scale(0.9);
-}
-
-/* Ship Placement */
-#ship-placement {
-  display: flex;
-  flex-direction: column;
-  border: 0.25rem solid var(--board-border-color);
-  border-radius: 0.6rem;
-  padding: 1.2rem 0.6rem;
-  gap: 0.6rem;
-  box-sizing: border-box;
-}
-
-.ship-placement-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1.2rem;
-  padding: 0.6rem;
-  background-color: var(--board-bg-color);
-  border-radius: 0.6rem;
-  border: 0.25rem solid var(--board-border-color);
-  margin-bottom: 1.2rem;
-}
-
-.ship-placement-header .board-label {
-  font-size: 1.3rem;
-  font-weight: bold;
-  color: var(--text-color);
 }

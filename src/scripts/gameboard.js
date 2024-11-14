@@ -35,23 +35,23 @@ export default class Gameboard {
     }
   }
 
-  checkCollision(row, col, length, orientation) {
-    for (let i = 0; i < length; i++) {
-      const x = orientation === 0 ? row + i : row;
-      const y = orientation === 1 ? col + i : col;
-
-      if (this.board[x][y] !== null) {
-        throw new Error("Cells already occupied!");
-      }
+  checkCollision(row, col) {
+    if (
+      this.ships.some((ship) =>
+        ship.coords.some((coord) => coord[0] === row && coord[1] === col)
+      )
+    ) {
+      throw new Error("Ship already placed here!");
     }
   }
 
   place(coords, length, orientation) {
+    console.log(this.ships);
     const [row, col] = coords;
 
     this.validateCoordinates(row, col);
     this.checkBoundary(row, col, length, orientation);
-    this.checkCollision(row, col, length, orientation);
+    this.checkCollision(row, col);
 
     const ship = new Ship(length);
 

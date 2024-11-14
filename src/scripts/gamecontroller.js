@@ -21,11 +21,11 @@ const computer = new Player("Computer", "p2-board");
 // player.gameboard.place([7, 1], 3, 1);
 // player.gameboard.place([0, 8], 2, 0);
 
-document.body.addEventListener("click", () => {
-  song.volume = 0.5;
-  song.play().catch((err) => console.log("Error playing song:", err));
-  song.loop = true;
-});
+// document.body.addEventListener("click", () => {
+//   song.volume = 0.5;
+//   song.play().catch((err) => console.log("Error playing song:", err));
+//   song.loop = true;
+// });
 
 // getComputerShips(computer);
 generateBoard(player);

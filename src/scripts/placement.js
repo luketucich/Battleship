@@ -23,6 +23,28 @@ export function getComputerShips(computer) {
   }
 }
 
-// export function getPlayerShips(player) {
-
+// /* Ship Draggable */
+// .ship-draggable {
+//   display: flex;
+//   flex-direction: row;
+//   gap: 0.2rem;
 // }
+
+// /* Ship Placement */
+// #ship-placement {
+//   display: flex;
+//   /* align-items: center;
+//   justify-content: center;
+//   flex-wrap: wrap;
+//   flex-direction: row; */
+//   flex-direction: column;
+
+export function rotateButton() {
+  const rotateButton = document.getElementById("rotate-button");
+  const ships = document.querySelectorAll(".ship-draggable");
+  const shipsContainer = document.getElementById("ship-placement");
+
+  rotateButton.addEventListener("click", () => {
+    console.log("rotate button clicked");
+  });
+}
