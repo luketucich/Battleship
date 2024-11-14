@@ -1,4 +1,4 @@
-import { clearShipCells, updateShipCells } from "./dom.js";
+import { clearShipCells, updateShipCells, transition } from "./dom.js";
 import placeSoundLocation from "../assets/place.wav";
 import errorSoundLocation from "../assets/error.wav";
 import rotateSoundLocation from "../assets/rotate.wav";
@@ -224,6 +224,7 @@ export default function dragDrop(player) {
         if (player.gameboard.ships.length < 5) {
           errorSound.play();
         } else {
+          transition();
           deploySound.play();
           resolve();
         }

@@ -1,4 +1,6 @@
-export function titleScreen() {}
+import staticLocation from "../assets/static.gif";
+import staticSoundLocation from "../assets/static.wav";
+const staticSound = new Audio(staticSoundLocation);
 
 export function updateTitle() {
   const title = document.getElementById("title");
@@ -85,4 +87,24 @@ export function changeToControlCenter() {
   const deployButton = document.getElementById("deploy-button");
   dockingStation.style.display = "none";
   deployButton.style.display = "none";
+}
+export function transition() {
+  staticSound.volume = 0.4;
+  staticSound.play();
+
+  const staticGif = document.createElement("img");
+  staticGif.src = staticLocation;
+  staticGif.style.position = "fixed";
+  staticGif.style.top = "0";
+  staticGif.style.left = "0";
+  staticGif.style.width = "100%";
+  staticGif.style.height = "100%";
+  staticGif.style.zIndex = "9998";
+  staticGif.style.opacity = "0.4";
+  staticGif.style.pointerEvents = "none";
+  document.body.appendChild(staticGif);
+
+  setTimeout(() => {
+    document.body.removeChild(staticGif);
+  }, 300);
 }
