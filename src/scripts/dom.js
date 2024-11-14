@@ -68,3 +68,10 @@ export function updateShipCells(player, coord) {
   const cellDiv = board.querySelector(`[coords="${row},${col}"]`);
   cellDiv.classList.add("ship");
 }
+
+export function clearShipCells(player) {
+  const board = document.getElementById(player.id);
+  board.querySelectorAll(".cell").forEach((cell) => {
+    cell.classList.remove("ship");
+  });
+}

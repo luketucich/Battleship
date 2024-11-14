@@ -9,6 +9,7 @@ import songLocation from "../assets/song.mp3";
 import { getInput, getComputerInput, checkRepeat } from "./input";
 import { getComputerShips } from "./placement.js";
 import dragDrop from "./drag.js";
+import trashButton from "./drag.js";
 import feather from "feather-icons";
 
 const song = new Audio(songLocation);

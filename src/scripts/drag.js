@@ -1,11 +1,13 @@
-import { updateShipCells } from "./dom.js";
+import { clearShipCells, updateShipCells } from "./dom.js";
 import placeSoundLocation from "../assets/place.wav";
 import errorSoundLocation from "../assets/error.wav";
 import rotateSoundLocation from "../assets/rotate.wav";
+import trashSoundLocation from "../assets/trash.wav";
 
 const rotateSound = new Audio(rotateSoundLocation);
 const placeSound = new Audio(placeSoundLocation);
 const errorSound = new Audio(errorSoundLocation);
+const trashSound = new Audio(trashSoundLocation);
 
 (function rotateButton() {
   const rotateButton = document.getElementById("rotate-button");
@@ -148,7 +150,6 @@ function handleDrop(event, player) {
         .split(",")
         .map(Number);
 
-      console.log(smallestCell);
       // Check for collisions on each cell
       shipPlacement.forEach((cell) => {
         const coords = cell.getAttribute("coords").split(",").map(Number);
@@ -191,4 +192,21 @@ export default function dragDrop(player) {
     cell.addEventListener("dragleave", handleDragLeave);
     cell.addEventListener("drop", (event) => handleDrop(event, player));
   });
+
+  (function trashButton() {
+    const trashButton = document.getElementById("trash-button");
+
+    trashButton.addEventListener("click", () => {
+      trashSound.play();
+      player.gameboard.ships = [];
+      clearShipCells(player);
+
+      const draggables = document.querySelectorAll(".ship-draggable");
+
+      draggables.forEach((draggable) => {
+        draggable.classList.remove("placed");
+        draggable.draggable = true;
+      });
+    });
+  })();
 }

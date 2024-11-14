@@ -46,7 +46,6 @@ export default class Gameboard {
   }
 
   place(coords, length, orientation) {
-    console.log(this.ships);
     const [row, col] = coords;
 
     this.validateCoordinates(row, col);
