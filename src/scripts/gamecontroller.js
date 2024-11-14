@@ -3,30 +3,26 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 import "../styles/styles.css";
+import { titleScreen } from "./menu.js";
 import { playBattleSong } from "./music.js";
 import { updateBoard, generateBoard, changeToControlCenter } from "./dom";
 import Player from "./player";
 import { getInput, getComputerInput, checkRepeat } from "./input";
 import { getComputerShips } from "./placement.js";
 import dragDrop from "./drag.js";
-import trashButton from "./drag.js";
 import feather from "feather-icons";
 
 const player = new Player("Player 1", "p1-board");
 const computer = new Player("Computer", "p2-board");
 
-// player.gameboard.place([0, 0], 5, 0);
-// player.gameboard.place([6, 9], 4, 0);
-// player.gameboard.place([4, 4], 3, 1);
-// player.gameboard.place([7, 1], 3, 1);
-// player.gameboard.place([0, 8], 2, 0);
-
-// getComputerShips(computer);
+await titleScreen();
 generateBoard(player);
 await dragDrop(player);
 changeToControlCenter();
 
 (async function gameLoop(player1, player2, turn = 0) {
+  document.getElementById("p1-board-container").style.pointerEvents = "none";
+
   playBattleSong();
   getComputerShips(player2);
   generateBoard(player1);

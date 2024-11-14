@@ -1,3 +1,5 @@
+export function titleScreen() {}
+
 export function updateTitle() {
   const title = document.getElementById("title");
   title.textContent = "Control Center";
