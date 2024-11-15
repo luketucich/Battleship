@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
+const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 
 module.exports = {
   entry: {
@@ -13,6 +14,9 @@ module.exports = {
     }),
 
     new NodePolyfillPlugin(),
+    new FaviconsWebpackPlugin({
+      logo: path.resolve(__dirname, "src/assets", "favicon.png"),
+    }),
   ],
   output: {
     filename: "[name].bundle.js",
