@@ -23,7 +23,10 @@ changeToControlCenter();
 (async function gameLoop(player1, player2, turn = 0) {
   document.getElementById("p1-board-container").style.pointerEvents = "none";
 
-  playBattleSong();
+  if (localStorage.getItem("musicEnabled") === "true") {
+    playBattleSong();
+  }
+
   getComputerShips(player2);
   generateBoard(player1);
   generateBoard(player2);

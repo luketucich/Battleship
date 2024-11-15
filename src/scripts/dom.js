@@ -1,5 +1,5 @@
 import staticLocation from "../assets/static.gif";
-import staticSoundLocation from "../assets/static.wav";
+import staticSoundLocation from "../assets/static.mp3";
 const staticSound = new Audio(staticSoundLocation);
 
 export function updateTitle() {
@@ -88,9 +88,16 @@ export function changeToControlCenter() {
   dockingStation.style.display = "none";
   deployButton.style.display = "none";
 }
+
 export function transition() {
-  staticSound.volume = 0.4;
-  staticSound.play();
+  if (localStorage.getItem("sfxEnabled") === "true") {
+    staticSound.volume = 0.2;
+    staticSound.play();
+    setTimeout(() => {
+      staticSound.pause();
+      staticSound.currentTime = 0;
+    }, 550);
+  }
 
   const staticGif = document.createElement("img");
   staticGif.src = staticLocation;
@@ -100,11 +107,15 @@ export function transition() {
   staticGif.style.width = "100%";
   staticGif.style.height = "100%";
   staticGif.style.zIndex = "9998";
-  staticGif.style.opacity = "0.4";
+  staticGif.style.opacity = "0.2";
   staticGif.style.pointerEvents = "none";
+  staticGif.style.transition = "opacity 0.1s ease-in-out";
   document.body.appendChild(staticGif);
 
   setTimeout(() => {
-    document.body.removeChild(staticGif);
+    staticGif.style.opacity = "0";
+    setTimeout(() => {
+      document.body.removeChild(staticGif);
+    }, 300);
   }, 300);
 }

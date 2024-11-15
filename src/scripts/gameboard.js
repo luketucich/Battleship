@@ -70,7 +70,9 @@ export default class Gameboard {
     let cell = this.board[row][col];
 
     if (cell === null) {
-      missSound.play();
+      if (localStorage.getItem("sfxEnabled") === "true") {
+        missSound.play();
+      }
       this.board[row][col] = "MISS";
       this.misses.push(coords);
 
@@ -89,7 +91,9 @@ export default class Gameboard {
       throw new Error("Cannot interact with cell twice!");
     } else {
       cell.hit();
-      cell.isSunk() ? sunkSound.play() : hitSound.play();
+      if (localStorage.getItem("sfxEnabled") === "true") {
+        cell.isSunk() ? sunkSound.play() : hitSound.play();
+      }
       this.hits.push(coords);
 
       this.available.findIndex(

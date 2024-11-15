@@ -1,4 +1,3 @@
-/* Root Variables */
 :root {
   --background-color: #0e180e;
   --text-color: #33ff33;
@@ -9,20 +8,18 @@
   --cell-bg-color: #073707;
   --cell-border-color: #004d00;
   --cell-hit-color: #a62727;
-  --cell-highlight-color: #66ff664c;
+  --cell-highlight-color: #71ff7148;
   --cell-miss-color: #4d4d4d;
   --cell-ship-color: #009900;
   --cell-sunk-color: #4a0000;
   --scanline-color: rgba(51, 255, 51, 0.1);
 }
 
-/* Font Face */
 @font-face {
   font-family: "OCRAEXT";
   src: url("../assets/OCRAEXT.ttf") format("truetype");
 }
 
-/* Global Styles */
 html {
   user-select: none;
   background-color: black;
@@ -46,7 +43,6 @@ body {
   box-sizing: border-box;
 }
 
-/* Body Effects */
 body::before {
   content: "";
   position: absolute;
@@ -77,7 +73,6 @@ body::after {
   z-index: 9999;
 }
 
-/* Keyframes */
 @keyframes scanlines {
   0% {
     background-position: 0 0;
@@ -111,7 +106,6 @@ body::after {
   margin: 0;
 }
 
-/* Menu Buttons */
 #menu-buttons {
   display: flex;
   flex-direction: column;
@@ -137,7 +131,6 @@ body::after {
   transform: scale(1.1);
 }
 
-/* Gameboards */
 #gameboards {
   display: none;
   gap: 1.5rem;
@@ -152,7 +145,6 @@ body::after {
   transition: transform 0.2s ease;
 }
 
-/* Board Container */
 .board-container {
   display: none;
   flex-direction: column;
@@ -166,7 +158,6 @@ body::after {
   color: var(--text-color);
 }
 
-/* Board */
 .board {
   display: grid;
   grid-template: repeat(10, 1fr) / repeat(10, 1fr);
@@ -183,7 +174,6 @@ body::after {
   transform: rotate(90deg);
 }
 
-/* Cells */
 .cell {
   padding: 0.2rem;
   width: 2.5rem;
@@ -221,7 +211,6 @@ body::after {
   background-color: var(--cell-sunk-color);
 }
 
-/* Board Button */
 .board-button {
   background-color: var(--board-bg-color);
   color: var(--text-color);
@@ -243,7 +232,6 @@ body::after {
   transform: scale(0.9);
 }
 
-/* Ship Placement */
 #ship-placement {
   display: flex;
   flex-direction: column;
@@ -276,7 +264,6 @@ body::after {
   color: var(--text-color);
 }
 
-/* Ship Container */
 .ship-container {
   display: flex;
   flex-direction: column;
@@ -295,7 +282,6 @@ body::after {
   text-align: center;
 }
 
-/* Ship Draggable */
 .ship-draggable {
   display: flex;
   flex-direction: row;
@@ -312,7 +298,6 @@ body::after {
   cursor: move;
 }
 
-/* Ship Part */
 .ship-part {
   width: 1.6rem;
   height: 1.6rem;
@@ -321,12 +306,10 @@ body::after {
   border-radius: 0.25rem;
 }
 
-/* Highlight */
 .highlight {
   background-color: var(--cell-highlight-color);
 }
 
-/* Placed */
 .placed {
   pointer-events: none;
   opacity: 0.2;
@@ -357,4 +340,156 @@ body::after {
 #deploy-button:hover {
   background-color: var(--cell-highlight-color);
   transform: scale(1.1);
+}
+
+#settings-modal {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9997;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--board-bg-color);
+  border: 0.25rem solid var(--board-border-color);
+  border-radius: 0.6rem;
+  padding: 2rem;
+  width: 80%;
+  max-width: 500px;
+  box-sizing: border-box;
+  text-align: left;
+  color: var(--text-color);
+  animation: fadeIn 0.5s ease-out;
+  margin: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.close-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.6rem;
+  width: 1.6rem;
+  color: var(--text-color);
+  font-size: 2rem;
+  cursor: pointer;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background-color: var(--board-bg-color);
+  border: 0.25rem solid var(--board-border-color);
+  border-radius: 0.6rem;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+  cursor: grab;
+  background-color: var(--cell-highlight-color);
+  transform: scale(1.1);
+}
+
+.close-button:active {
+  transform: scale(0.9);
+}
+
+.settings-option {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+  font-size: 1.4rem;
+  color: var(--text-color);
+  user-select: none;
+}
+
+.settings-option input[type="checkbox"] {
+  display: none;
+}
+
+.settings-option input[type="checkbox"] + label {
+  position: relative;
+  padding-left: 2rem;
+  cursor: pointer;
+  font-size: 1.4rem;
+}
+
+.settings-option input[type="checkbox"] + label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.4rem;
+  height: 1.4rem;
+  border: 2px solid var(--text-color);
+  border-radius: 0.3rem;
+  background-color: var(--board-bg-color);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.settings-option input[type="checkbox"]:checked + label::before {
+  background-color: var(--text-color);
+  border-color: var(--cell-highlight-color);
+}
+
+.settings-option input[type="checkbox"]:checked + label::after {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.6rem;
+  height: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: var(--board-bg-color);
+}
+
+.settings-option input[type="checkbox"]:hover + label::before {
+  background-color: var(--cell-highlight-color);
+}
+
+#save-settings-button {
+  font-family: "OCRAEXT", Impact;
+  background-color: var(--board-bg-color);
+  color: var(--text-color);
+  border: 0.25rem solid var(--board-border-color);
+  border-radius: 0.6rem;
+  padding: 0.6rem 1.2rem;
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  margin-top: 1.5rem;
+}
+
+#save-settings-button:hover {
+  background-color: var(--cell-highlight-color);
+  transform: scale(1.1);
+}
+
+#save-settings-button:active {
+  transform: scale(0.9);
 }

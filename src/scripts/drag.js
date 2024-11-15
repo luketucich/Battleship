@@ -11,6 +11,12 @@ const errorSound = new Audio(errorSoundLocation);
 const trashSound = new Audio(trashSoundLocation);
 const deploySound = new Audio(deploySoundLocation);
 
+function playSound(sound) {
+  if (localStorage.getItem("sfxEnabled") === "true") {
+    sound.play();
+  }
+}
+
 function handleDragStart(event) {
   event.target.classList.add("dragging");
 }
@@ -96,13 +102,13 @@ function handleDrop(event, player) {
         const coords = cell.getAttribute("coords").split(",").map(Number);
         updateShipCells(player, coords);
       });
-      placeSound.play();
+      playSound(placeSound);
 
       const draggingShip = document.querySelector(".dragging");
       draggingShip.classList.add("placed");
       draggingShip.draggable = false;
     } catch (error) {
-      errorSound.play();
+      playSound(errorSound);
       document.querySelectorAll(".cell").forEach((cell) => {
         cell.classList.remove("highlight");
       });
@@ -142,13 +148,13 @@ function handleDrop(event, player) {
         const coords = cell.getAttribute("coords").split(",").map(Number);
         updateShipCells(player, coords);
       });
-      placeSound.play();
+      playSound(placeSound);
 
       const draggingShip = document.querySelector(".dragging");
       draggingShip.classList.add("placed");
       draggingShip.draggable = false;
     } catch (error) {
-      errorSound.play();
+      playSound(errorSound);
       document.querySelectorAll(".cell").forEach((cell) => {
         cell.classList.remove("highlight");
       });
@@ -179,7 +185,7 @@ export default function dragDrop(player) {
       const ships = document.querySelectorAll(".ship-draggable");
 
       rotateButton.addEventListener("click", () => {
-        rotateSound.play();
+        playSound(rotateSound);
         if (shipsContainer.classList.contains("vertical.container")) {
           shipsContainer.classList.remove("vertical.container");
           ships.forEach((ship) => {
@@ -200,7 +206,7 @@ export default function dragDrop(player) {
       const trashButton = document.getElementById("trash-button");
 
       trashButton.addEventListener("click", () => {
-        trashSound.play();
+        playSound(trashSound);
         player.gameboard.ships = [];
         player.gameboard.board = Array.from({ length: 10 }, () =>
           Array(10).fill(null)
@@ -222,10 +228,10 @@ export default function dragDrop(player) {
 
       deployButton.addEventListener("click", () => {
         if (player.gameboard.ships.length < 5) {
-          errorSound.play();
+          playSound(errorSound);
         } else {
           transition();
-          deploySound.play();
+          playSound(deploySound);
           resolve();
         }
       });
