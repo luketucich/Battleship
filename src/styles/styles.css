@@ -1,4 +1,5 @@
 :root {
+  font-size: 12.5px;
   --background-color: #0e180e;
   --background-color-lose: #250000;
   --text-color: #33ff33;
@@ -220,7 +221,7 @@ body::after {
   background-color: var(--board-bg-color);
   color: var(--text-color);
   border: none;
-  border: 0.25rem solid var(--board-border-color);
+  border: 0.2rem solid var(--board-border-color);
   border-radius: 0.6rem;
   padding: 0.6rem 1.2rem;
   font-size: 1.6rem;
@@ -387,7 +388,7 @@ body::after {
   box-sizing: border-box;
   text-align: left;
   color: var(--text-color);
-  animation: fadeIn 0.5s ease-out;
+  animation: fadeIn 0 ease-out;
   margin: auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
