@@ -53,7 +53,7 @@ export function updateBoard(player, coords) {
         const [x, y] = coord;
         const cellDiv = board.querySelector(`[coords="${x},${y}"]`);
         cellDiv.classList.add("sunk");
-      }, index * 250);
+      }, index * 200);
     });
   } else if (
     player.gameboard.misses.some((miss) => miss[0] === row && miss[1] === col)
@@ -118,4 +118,72 @@ export function transition() {
       document.body.removeChild(staticGif);
     }, 300);
   }, 300);
+}
+
+export function winScreen() {
+  const gameboard = document.getElementById("gameboards");
+  const title = document.getElementById("title");
+  const gameOverScreen = document.getElementById("game-over-screen");
+  const gameWinMessage = document.getElementById("game-win-message");
+  gameOverScreen.style.display = "flex";
+  gameWinMessage.style.display = "block";
+  gameboard.style.display = "none";
+  title.style.display = "none";
+}
+
+export function loseScreen() {
+  const gameboard = document.getElementById("gameboards");
+  const title = document.getElementById("title");
+  const gameOverScreen = document.getElementById("game-over-screen");
+  const gameLoseMessage = document.getElementById("game-lose-message");
+  const backToMenuButton = document.getElementById("back-to-menu-button");
+
+  gameOverScreen.style.display = "flex";
+  gameLoseMessage.style.display = "block";
+  gameboard.style.display = "none";
+  title.style.display = "none";
+
+  document.body.style.flexDirection = "column";
+  document.body.style.backgroundColor = "var(--background-color-lose)";
+  document.body.style.color = "var(--text-color)";
+  document.body.style.margin = "0";
+  document.body.style.padding = "0";
+  document.body.style.display = "flex";
+  document.body.style.justifyContent = "center";
+  document.body.style.alignItems = "center";
+  document.body.style.height = "100vh";
+  document.body.style.width = "100vw";
+  document.body.style.position = "relative";
+  document.body.style.filter = "contrast(1.1) brightness(1.2) blur(0.6px)";
+  document.body.style.animation = "fadeIn 1s ease-out";
+  document.body.style.boxSizing = "border-box";
+
+  const beforeStyle = document.createElement("style");
+  beforeStyle.innerHTML = `
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        to bottom,
+        var(--scanline-color-lose) 0%,
+        var(--scanline-color-lose) 0.064rem,
+        transparent 0.0625rem,
+        transparent 0.3rem
+      ),
+      radial-gradient(circle, transparent, transparent 70%, rgba(0, 0, 0, 0.5));
+      animation: scanlines 0.5s infinite;
+      pointer-events: none;
+      z-index: 9998;
+    }
+    #back-to-menu-button:hover {
+      background-color: var(--cell-highlight-color-lose);
+    }
+    #back-to-menu-button {
+      background-color: var(--board-bg-color-lose);
+      color: var(--cell-hit-color);
+      border: 0.25rem solid var(--board-border-color-lose);
+    }
+  `;
+  document.head.appendChild(beforeStyle);
 }

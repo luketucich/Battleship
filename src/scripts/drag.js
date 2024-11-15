@@ -11,9 +11,17 @@ const errorSound = new Audio(errorSoundLocation);
 const trashSound = new Audio(trashSoundLocation);
 const deploySound = new Audio(deploySoundLocation);
 
-function playSound(sound) {
+export function playSound(sound) {
   if (localStorage.getItem("sfxEnabled") === "true") {
     sound.play();
+  }
+}
+
+export function playSong(song) {
+  if (localStorage.getItem("musicEnabled") === "true") {
+    song.volume = 0.5;
+    song.play().catch((err) => console.log("Error playing song:", err));
+    song.loop = true;
   }
 }
 

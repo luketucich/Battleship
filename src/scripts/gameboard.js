@@ -50,7 +50,11 @@ export default class Gameboard {
 
     this.validateCoordinates(row, col);
     this.checkBoundary(row, col, length, orientation);
-    this.checkCollision(row, col);
+    for (let i = 0; i < length; i++) {
+      const x = orientation === 0 ? row + i : row;
+      const y = orientation === 1 ? col + i : col;
+      this.checkCollision(x, y);
+    }
 
     const ship = new Ship(length);
 

@@ -1,18 +1,23 @@
 :root {
   --background-color: #0e180e;
+  --background-color-lose: #250000;
   --text-color: #33ff33;
   --gameboard-bg-color: #0f1b0f;
   --gameboard-border-color: #004d00;
   --board-border-color: #003d00;
   --board-bg-color: #0d190d;
+  --board-border-color-lose: #660000; /* Darker than hit and sunk colors */
+  --board-bg-color-lose: #330000; /* Darker than hit and sunk colors */
   --cell-bg-color: #073707;
   --cell-border-color: #004d00;
   --cell-hit-color: #a62727;
   --cell-highlight-color: #71ff7148;
+  --cell-highlight-color-lose: #510101; /* Darker than hit and sunk colors */
   --cell-miss-color: #4d4d4d;
   --cell-ship-color: #009900;
   --cell-sunk-color: #4a0000;
   --scanline-color: rgba(51, 255, 51, 0.1);
+  --scanline-color-lose: rgba(191, 34, 34, 0.249);
 }
 
 @font-face {
@@ -492,4 +497,46 @@ body::after {
 
 #save-settings-button:active {
   transform: scale(0.9);
+}
+
+#game-over-screen {
+  display: none;
+  flex-direction: column;
+  font-family: "OCRAEXT";
+  align-items: center;
+  justify-content: center;
+}
+
+.game-over-message {
+  margin: 0; /* Reset margin */
+  padding: 0; /* Reset padding */
+  text-align: left; /* Ensure text alignment */
+  white-space: pre; /* Preserve whitespace */
+  display: none;
+  font-family: "OCRAEXT";
+  font-size: 1.1rem;
+  color: var(--text-color);
+}
+
+#game-lose-message {
+  color: var(--cell-hit-color);
+}
+
+#back-to-menu-button {
+  width: fit-content;
+  font-family: "OCRAEXT", Impact;
+  background-color: var(--board-bg-color);
+  color: var(--text-color);
+  border: 0.25rem solid var(--board-border-color);
+  border-radius: 0.6rem;
+  padding: 0.6rem 1.2rem;
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  margin-top: 1.5rem;
+}
+
+#back-to-menu-button:hover {
+  background-color: var(--cell-highlight-color);
+  transform: scale(1.1);
 }
