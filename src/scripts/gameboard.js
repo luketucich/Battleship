@@ -18,6 +18,7 @@ export default class Gameboard {
         this.available.push([i, j]);
       }
     }
+    this.lastHitShip = null;
   }
 
   validateCoordinates(row, col) {

@@ -1,5 +1,6 @@
 export default class Ship {
   constructor(length) {
+    this.orientation = null;
     this.length = length;
     this.hits = 0;
     this.coords = [];

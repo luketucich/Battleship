@@ -537,6 +537,7 @@ body::after {
 }
 
 #back-to-menu-button:hover {
+  cursor: pointer;
   background-color: var(--cell-highlight-color);
   transform: scale(1.1);
 }

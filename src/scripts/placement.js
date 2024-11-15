@@ -17,7 +17,6 @@ export function getComputerShips(computer) {
       computer.gameboard.place(coords, length, orientation);
       ships.push([coords, length, orientation]);
       shipLengths.shift();
-      console.log(computer.gameboard.ships);
     } catch (err) {
       console.error("Computer ship placement invalid, retrying.");
     }
