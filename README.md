@@ -8,7 +8,14 @@ https://github.com/user-attachments/assets/5dad6340-e842-44a6-ae62-d03a4bd87655
 
 ## Tech Stack
 
-HTML, CSS, JavaScript, Webpack, Jest
+<div style="display: flex; gap: 10px;">
+  <img src="https://img.shields.io/badge/HTML-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white" alt="HTML" />
+  <img src="https://img.shields.io/badge/CSS-%231572B6.svg?&style=for-the-badge&logo=css3&logoColor=white" alt="CSS" />
+  <img src="https://img.shields.io/badge/JavaScript-%23F7DF1E.svg?&style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript" />
+  <img src="https://img.shields.io/badge/Webpack-%238DD6F9.svg?&style=for-the-badge&logo=webpack&logoColor=black" alt="Webpack" />
+  <img src="https://img.shields.io/badge/Jest-%23C21325.svg?&style=for-the-badge&logo=jest&logoColor=white" alt="Jest" />
+</div>
+
 
 ## What I Learned
 
