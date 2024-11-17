@@ -1,4 +1,4 @@
-# Battleship 🚢 | [Click Me to Play 🎮](luketucich.github.io/Battleship) 
+# Battleship 🚢 | [Click Me to Play 🎮](https://luketucich.github.io/Battleship/) 
 
 A web-based Battleship game where you can play against a computer opponent, featuring drag-and-drop ship placement, retro 8-bit graphics, satisfying SFX, and more!
 
